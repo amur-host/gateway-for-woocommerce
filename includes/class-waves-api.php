@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 /**
  * API class
  */
-class WavesApi
+class AmurApi
 {
 
     private $address;
@@ -38,7 +38,7 @@ class WavesApi
     function findByDestinationTag($dt)
     {
         $attachment = $dt;
-       
+
         $result = $this->get('transactions/address/' . $this->address. '/limit/50');
         if ($result) {
             $result_encoded = json_encode($result);

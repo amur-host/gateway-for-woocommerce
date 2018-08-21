@@ -7,45 +7,45 @@ if (!defined('ABSPATH')) {
 /**
  * Settings class
  */
-if (!class_exists('WavesSettings')) {
+if (!class_exists('AmurSettings')) {
 
-    class WavesSettings
+    class AmurSettings
     {
 
         public static function fields()
         {
 
-            return apply_filters('wc_waves_settings',
+            return apply_filters('wc_amur_settings',
 
                 array(
                     'enabled'     => array(
-                        'title'   => __('Enable/Disable', 'waves-gateway-for-woocommerce'),
+                        'title'   => __('Enable/Disable', 'amur-gateway-for-woocommerce'),
                         'type'    => 'checkbox',
-                        'label'   => __('Enable Waves payments', 'waves-gateway-for-woocommerce'),
+                        'label'   => __('Enable Amur payments', 'amur-gateway-for-woocommerce'),
                         'default' => 'yes',
                     ),
                     'title'       => array(
-                        'title'       => __('Title', 'waves-gateway-for-woocommerce'),
+                        'title'       => __('Title', 'amur-gateway-for-woocommerce'),
                         'type'        => 'text',
-                        'description' => __('This controls the title which the user sees during checkout.', 'waves-gateway-for-woocommerce'),
-                        'default'     => __('Pay with Waves', 'waves-gateway-for-woocommerce'),
+                        'description' => __('This controls the title which the user sees during checkout.', 'amur-gateway-for-woocommerce'),
+                        'default'     => __('Pay with Amur', 'amur-gateway-for-woocommerce'),
                         'desc_tip'    => true,
                     ),
                     'description' => array(
-                        'title'   => __('Customer Message', 'waves-gateway-for-woocommerce'),
+                        'title'   => __('Customer Message', 'amur-gateway-for-woocommerce'),
                         'type'    => 'textarea',
-                        'default' => __('Ultra-fast and secure checkout with Waves'),
+                        'default' => __('Ultra-fast and secure checkout with Amur'),
                     ),
                     'address'     => array(
-                        'title'       => __('Destination address', 'waves-gateway-for-woocommerce'),
+                        'title'       => __('Destination address', 'amur-gateway-for-woocommerce'),
                         'type'        => 'text',
                         'default'     => '',
-                        'description' => __('This addresses will be used for receiving funds.', 'waves-gateway-for-woocommerce'),
+                        'description' => __('This addresses will be used for receiving funds.', 'amur-gateway-for-woocommerce'),
                     ),
                     'show_prices' => array(
-                        'title'   => __('Convert prices', 'waves-gateway-for-woocommerce'),
+                        'title'   => __('Convert prices', 'amur-gateway-for-woocommerce'),
                         'type'    => 'checkbox',
-                        'label'   => __('Add prices in Waves (or asset)', 'waves-gateway-for-woocommerce'),
+                        'label'   => __('Add prices in Amur (or asset)', 'amur-gateway-for-woocommerce'),
                         'default' => 'no',
 
                     ),
@@ -55,22 +55,22 @@ if (!class_exists('WavesSettings')) {
 
                     ),
                     'asset_id'     => array(
-                        'title'       => __('Asset ID', 'waves-gateway-for-woocommerce'),
+                        'title'       => __('Asset ID', 'amur-gateway-for-woocommerce'),
                         'type'        => 'text',
                         'default'     => null,
-                        'description' => __('This is the asset Id used for transactions.', 'waves-gateway-for-woocommerce'),
+                        'description' => __('This is the asset Id used for transactions.', 'amur-gateway-for-woocommerce'),
                     ),
                     'asset_code'     => array(
-                        'title'       => __('Asset code (short name = currency code = currency symbol)', 'waves-gateway-for-woocommerce'),
+                        'title'       => __('Asset code (short name = currency code = currency symbol)', 'amur-gateway-for-woocommerce'),
                         'type'        => 'text',
                         'default'     => null,
-                        'description' => __('This is the Asset Currency code for exchange rates. If omitted Waves will be used', 'waves-gateway-for-woocommerce'),
+                        'description' => __('This is the Asset Currency code for exchange rates. If omitted Amur will be used', 'amur-gateway-for-woocommerce'),
                     ),
                     'asset_description'     => array(
-                        'title'       => __('Asset description', 'waves-gateway-for-woocommerce'),
+                        'title'       => __('Asset description', 'amur-gateway-for-woocommerce'),
                         'type'        => 'text',
                         'default'     => null,
-                        'description' => __('Asset full name', 'waves-gateway-for-woocommerce'),
+                        'description' => __('Asset full name', 'amur-gateway-for-woocommerce'),
                     ),
                 )
             );

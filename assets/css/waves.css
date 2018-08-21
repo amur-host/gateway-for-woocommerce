@@ -1,9 +1,9 @@
-.waves-address, .waves-amount{
+.amur-address, .amur-amount{
 	display: block;
 	text-align: center;
 	margin: 0 !important;
 }
-.waves-label{
+.amur-label{
 	display: block;
 	text-align: center;
 	font-size: 80%;
@@ -13,18 +13,18 @@
 	display:block;
 	margin-top: 1em;
 }
-.waves-logo{
+.amur-logo{
 	margin: 0 auto;
 }
-.waves-container{
+.amur-container{
 	text-align: center;
 }
-.waves-description{
+.amur-description{
 	font-size: 80%;
 	text-align: center;
 }
 
-#waves-qr-code{
+#amur-qr-code{
 	display: block;
 	width: 208px;
 	height: 208px;

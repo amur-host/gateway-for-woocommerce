@@ -3,16 +3,18 @@
 /**
  * Amur Gateway for Woocommerce
  *
- * Plugin Name: WNET Gateway for Woocommerce (also for other Amur assets)
+ * Plugin Name: AMUR Gateway for Woocommerce (also for other Amur assets)
  * Plugin URI: https://github.com/amur-host/gateway-for-woocommerce
  * Description: Show prices in Amur (or asset) and accept Amur payments in your woocommerce webshop
  * Version: 0.4.4
+ * Author: amur.host
  * Author URI:   https://github.com/amur-host/gateway-for-woocommerce
  * License: GPLv2 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: amur-gateway-for-woocommerce
  * Domain Path: /languages/
   *
+ * Copyright 2018 amur.host
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +53,7 @@ if (!class_exists('WcAmur')) {
         	self::$plugin_url = plugin_dir_url(self::$plugin_basename);
             add_action('plugins_loaded', array($this, 'init'));
         }
-
+        
         public static function getInstance()
         {
             if (null === self::$instance) {
@@ -107,7 +109,7 @@ if (!class_exists('WcAmur')) {
 	        return $gateways;
 	    }
 
-        public function AmurCurrencies( $currencies )
+        public function AmufCurrencies( $currencies )
         {
             $currencies['AMUR'] = __( 'Amur', 'amur' );
             $currencies['WNET'] = __( 'Wavesnode.NET', 'wnet' );
@@ -186,8 +188,8 @@ if (!class_exists('WcAmur')) {
 
 WcAmur::getInstance();
 
-function AmurGateway_textdomain() {
+function amurGateway_textdomain() {
     load_plugin_textdomain( 'amur-gateway-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-
+        
 add_action( 'plugins_loaded', 'amurGateway_textdomain' );

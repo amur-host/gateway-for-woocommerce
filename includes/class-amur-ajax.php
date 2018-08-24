@@ -49,6 +49,6 @@ class AmurAjax
         exit();
     }
 
-}
+} 
 
 AmurAjax::getInstance();

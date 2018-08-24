@@ -77,7 +77,7 @@ class WcAmurGateway extends WC_Payment_Gateway
         ));
         add_action('wp_enqueue_scripts', array($this, 'paymentScripts'));
 
-        add_action('woocommerce_thankyou_' . $this->id, array($this, 'thankyouPage'));
+        add_action('woocommerce_thankyou_' . $this->id, array($this, 'thankyouPage'));        
 
     }
 
@@ -92,7 +92,7 @@ class WcAmurGateway extends WC_Payment_Gateway
     	// sha1( get_bloginfo() )
         parent::init_settings();
     }
-
+   
     public function payment_fields()
     {
     	global $woocommerce;
@@ -103,14 +103,14 @@ class WcAmurGateway extends WC_Payment_Gateway
             $total_converted = AmurExchange::convertToAsset(get_woocommerce_currency(), $total_converted,$this->assetId);
             $rate = $total_converted / $this->get_order_total();
         }
-
+		
 		// Set decimals for tokens other than default value 8
 		if (get_woocommerce_currency() == "Ecop") {
 		$total_amur = $total_converted * 100000;
-		}
+		} 
 		else if (get_woocommerce_currency() == "Surfcash") {
 		$total_amur = $total_converted * 100;
-		}
+		} 
 		else if (get_woocommerce_currency() == "TN") {
 		$total_amur = $total_converted * 100;
 		}
@@ -122,7 +122,7 @@ class WcAmurGateway extends WC_Payment_Gateway
         $destination_tag = hexdec( substr(sha1(current_time(timestamp,1) . key ($woocommerce->cart->cart_contents )  ), 0, 7) );
         $base58 = new StephenHill\Base58();
         $destination_tag_encoded = $base58->encode(strval($destination_tag));
-        // set session data
+        // set session data 
         WC()->session->set('amur_payment_total', $total_amur);
         WC()->session->set('amur_destination_tag', $destination_tag_encoded);
         WC()->session->set('amur_data_hash', sha1( $this->secret . $total_converted ));
@@ -193,17 +193,17 @@ class WcAmurGateway extends WC_Payment_Gateway
         <?
     }
 
-    public function process_payment( $order_id )
+    public function process_payment( $order_id ) 
     {
     	global $woocommerce;
         $this->order = new WC_Order( $order_id );
-
+        
 	    $payment_total   = WC()->session->get('amur_payment_total');
         $destination_tag = WC()->session->get('amur_destination_tag');
 
 	    $ra = new AmurApi($this->address);
 	    $transaction = $ra->getTransaction( $_POST['tx_hash']);
-
+	    
         if($transaction->attachment != $destination_tag) {
 	    	exit('destination');
 	    	return array(
@@ -211,25 +211,25 @@ class WcAmurGateway extends WC_Payment_Gateway
 		        'messages' 	=> 'attachment mismatch'
 		    );
 	    }
-
+		
 		if($transaction->assetId != $this->assetId ) {
 			return array(
 		        'result'    => 'failure',
 		        'messages' 	=> 'Wrong Asset'
 		    );
 		}
-
+		
 	    if($transaction->amount != $payment_total) {
 	    	return array(
 		        'result'    => 'failure',
 		        'messages' 	=> 'amount mismatch'
 		    );
 	    }
-
+	    
         $this->order->payment_complete();
 
         $woocommerce->cart->empty_cart();
-
+	   
         return array(
             'result' => 'success',
             'redirect' => $this->get_return_url($this->order)
@@ -240,7 +240,7 @@ class WcAmurGateway extends WC_Payment_Gateway
     {
         wp_enqueue_script('qrcode', plugins_url('assets/js/jquery.qrcode.min.js', WcAmur::$plugin_basename), array('jquery'), WcAmur::$version, true);
         wp_enqueue_script('initialize', plugins_url('assets/js/jquery.initialize.js', WcAmur::$plugin_basename), array('jquery'), WcAmur::$version, true);
-
+        
         wp_enqueue_script('clipboard', plugins_url('assets/js/clipboard.js', WcAmur::$plugin_basename), array('jquery'), WcAmur::$version, true);
         wp_enqueue_script('woocommerce_amur_js', plugins_url('assets/js/amur.js', WcAmur::$plugin_basename), array(
             'jquery',

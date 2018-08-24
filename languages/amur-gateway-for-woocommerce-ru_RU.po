@@ -37,7 +37,7 @@ msgstr "Адрес получителя"
 
 #: includes/class-amur-gateway.php:104
 msgid "attachment"
-msgstr "прикрепление (attachment)"
+msgstr "комментарий (attachment)"
 
 #: includes/class-amur-gateway.php:113
 #, php-format
